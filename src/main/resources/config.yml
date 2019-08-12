@@ -1,5 +1,6 @@
 mysql:
   hostname: "localhost"
-  username: "root"
-  password: ""
   database: "bungeeplaytime"
+  port: 3306
+  username: "root"
+  password: "root"

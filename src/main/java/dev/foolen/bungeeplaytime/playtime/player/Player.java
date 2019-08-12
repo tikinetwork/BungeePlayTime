@@ -1,4 +1,4 @@
-package dev.foolen.bungeeplaytime.player;
+package dev.foolen.bungeeplaytime.playtime.player;
 
 import java.util.UUID;
 

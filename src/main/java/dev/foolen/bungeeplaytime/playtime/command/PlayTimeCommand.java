@@ -1,4 +1,4 @@
-package dev.foolen.bungeeplaytime.commands.executors;
+package dev.foolen.bungeeplaytime.playtime.command;
 
 import dev.foolen.bungeeplaytime.BungeePlayTime;
 import net.md_5.bungee.api.ChatColor;
