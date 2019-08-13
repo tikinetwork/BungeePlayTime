@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 
-import dev.foolen.bungeeplaytime.BungeePlayTime;
+import dev.foolen.bungeeplaytime.BungeePlayTimePlugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
@@ -23,7 +23,7 @@ public class Config {
 	}
 	
 	private void loadConfiguration() {
-		BungeePlayTime plugin = BungeePlayTime.getInstance();
+		BungeePlayTimePlugin plugin = BungeePlayTimePlugin.getInstance();
 		
 		if (!plugin.getDataFolder().exists())
             plugin.getDataFolder().mkdir();
