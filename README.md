@@ -11,9 +11,14 @@
 7. Enjoy!
 
 ## Commands
-| Command                  | Description                                   |
-|--------------------------|-----------------------------------------------|
+| Command                  | Description                 |
+|--------------------------|-----------------------------|
 | `/playtime [playername]` | Shows total online playtime |
+
+## Permissions
+| Permission                | Description                          |
+|---------------------------|--------------------------------------|
+| `bungeeplaytime.playtime` | Grants access to `/playtime` command |
 
 ## Authors
 - [Tjeu Foolen](https://github.com/tjeufoolen/)
