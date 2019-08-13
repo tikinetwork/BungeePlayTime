@@ -1,5 +1,5 @@
 # BungeePlayTime
-###### Keeps track of players online time (BungeeCord version)
+###### Keeps track of players online time across the entire network (BungeeCord version)
 
 ## Installation
 1. Download the latest release from github.
