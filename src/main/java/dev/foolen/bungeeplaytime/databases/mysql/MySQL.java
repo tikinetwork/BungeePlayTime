@@ -42,6 +42,7 @@ public class MySQL {
 		datasource.setDriverClassName("com.mysql.jdbc.Driver");
 		datasource.setUsername(USERNAME);
 		datasource.setPassword(PASSWORD);
+		datasource.addDataSourceProperty("ssl.mode", "disable");
 	}
 
 	private void loadDatabases() {
