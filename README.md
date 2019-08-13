@@ -1,10 +1,19 @@
 # BungeePlayTime
 ###### Keeps track of players online time
 
+## Installation
+1. Download the latest release from github.
+2. Add plugin inside your servers plugin folder.
+3. Start server.
+4. Stop server.
+5. Configure mysql settings inside `plugins > PlayTime > config.yml`. (Be sure to create the database)
+6. Restart server.
+7. Enjoy!
+
 ## Commands
-| Command                  | Description                                   | Aliases |
-|--------------------------|-----------------------------------------------|---------|
-| `/playtime [playername]` | Shows your/specified players current playtime | `/pt`   |
+| Command                  | Description                                   |
+|--------------------------|-----------------------------------------------|
+| `/playtime [playername]` | Shows your/specified players current playtime |
 
 ## Authors
 - [Tjeu Foolen](https://github.com/tjeufoolen/)
