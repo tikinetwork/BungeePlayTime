@@ -1,13 +1,12 @@
 package dev.foolen.bungeeplaytime.databases.mysql;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.Properties;
 
+import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 import dev.foolen.bungeeplaytime.config.Config;
 import dev.foolen.bungeeplaytime.databases.PlayerDB;
-import dev.foolen.bungeeplaytime.utils.Logger;
 import net.md_5.bungee.config.Configuration;
 
 public class MySQL {
@@ -34,33 +33,36 @@ public class MySQL {
 	}
 
 	private void connect() {
-		datasource = new HikariDataSource();
-		String connectionUrl = "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + DATABASE;
-
-		datasource.setMaximumPoolSize(10);
-		datasource.setJdbcUrl(connectionUrl);
-		datasource.setDriverClassName("com.mysql.jdbc.Driver");
-		datasource.setUsername(USERNAME);
-		datasource.setPassword(PASSWORD);
-		datasource.addDataSourceProperty("ssl.mode", "disable");
+		Properties props = new Properties();
+		props.setProperty("jdbcUrl", "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + DATABASE);
+		props.setProperty("username", USERNAME);
+		props.setProperty("password", PASSWORD);
+		
+		props.setProperty("dataSource.dataSourceClassName", "com.mysql.cj.jdbc.MysqlDataSource");
+		props.setProperty("dataSource.maximumPoolSize", "10");
+		props.setProperty("dataSource.cachePrepStmts", "true");
+		props.setProperty("dataSource.prepStmtCacheSize", "250");
+		props.setProperty("dataSource.prepStmtCacheSqlLimit", "2048");
+		props.setProperty("dataSource.useServerPrepStmts", "true");
+		props.setProperty("dataSource.useLocalSessionState", "true");
+		props.setProperty("dataSource.rewriteBatchedStatements", "true");
+		props.setProperty("dataSource.cacheResultSetMetadata", "true");
+		props.setProperty("dataSource.cacheServerConfiguration", "true");
+		props.setProperty("dataSource.elideSetAutoCommits", "true");
+		props.setProperty("dataSource.maintainTimeStats", "false");
+				
+		HikariConfig hconfig = new HikariConfig(props);
+		
+		datasource = new HikariDataSource(hconfig);
+		datasource.setLeakDetectionThreshold(60 * 1000); // REMOVE
 	}
 
 	private void loadDatabases() {
 		new PlayerDB();
 	}
 
-	public static Connection getConnection() {
-		Connection connection = null;
-
-		try {
-			connection = datasource.getConnection();
-		} catch (SQLException e) {
-			Logger.warning(
-					"Something went wrong while getting a connection. Did you create the database specified in config.yml?");
-			e.printStackTrace();
-		}
-
-		return connection;
+	public static HikariDataSource getDatasource() {
+		return datasource;
 	}
 
 	public void close() {
