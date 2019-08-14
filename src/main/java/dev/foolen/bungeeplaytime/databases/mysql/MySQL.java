@@ -37,6 +37,7 @@ public class MySQL {
 		props.setProperty("jdbcUrl", "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + DATABASE);
 		props.setProperty("username", USERNAME);
 		props.setProperty("password", PASSWORD);
+		props.setProperty("ssl","false");
 		
 		props.setProperty("dataSource.dataSourceClassName", "com.mysql.cj.jdbc.MysqlDataSource");
 		props.setProperty("dataSource.maximumPoolSize", "10");
