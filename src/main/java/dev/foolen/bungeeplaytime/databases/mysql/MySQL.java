@@ -1,13 +1,9 @@
 package dev.foolen.bungeeplaytime.databases.mysql;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 import com.zaxxer.hikari.HikariDataSource;
 
 import dev.foolen.bungeeplaytime.config.Config;
 import dev.foolen.bungeeplaytime.databases.PlayerDB;
-import dev.foolen.bungeeplaytime.utils.Logger;
 import net.md_5.bungee.config.Configuration;
 
 public class MySQL {
@@ -38,8 +34,8 @@ public class MySQL {
 		String connectionUrl = "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + DATABASE;
 
 		datasource.setMaximumPoolSize(10);
-		datasource.setJdbcUrl(connectionUrl);
 		datasource.setDriverClassName("com.mysql.jdbc.Driver");
+		datasource.setJdbcUrl(connectionUrl);
 		datasource.setUsername(USERNAME);
 		datasource.setPassword(PASSWORD);
 	}
@@ -48,18 +44,8 @@ public class MySQL {
 		new PlayerDB();
 	}
 
-	public static Connection getConnection() {
-		Connection connection = null;
-
-		try {
-			connection = datasource.getConnection();
-		} catch (SQLException e) {
-			Logger.warning(
-					"Something went wrong while getting a connection. Did you create the database specified in config.yml?");
-			e.printStackTrace();
-		}
-
-		return connection;
+	public static HikariDataSource getDatasource() {
+		return datasource;
 	}
 
 	public void close() {
